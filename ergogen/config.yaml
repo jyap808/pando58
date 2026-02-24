@@ -1,0 +1,1280 @@
+meta:
+  engine: 4.1.0
+  name: Pando58
+  author: Julian Yap
+  github: jyap808
+  version: v1.2.0
+  footer_text: &footer_text "Designed in Washington, USA - by jyap - v1.2"
+
+units:
+  # Proxy Spacing Variables
+  kx: U
+  ky: U
+  # Padding Variables
+  px: kx + 2
+  py: ky + 2
+  # Defaults to M2 Screws
+  screwSize: 1.1
+  # M2 spacer size
+  spacerSize: 1.6
+  # Tooling size
+  toolingSize: 1.6
+  standoffHeight: 10
+  standoffCoverHeight: 25
+  baseFillet: 1.2
+  switchFillet: 0.5
+
+  csWall: 3.6              # Wall thickness
+  csMargin: 0.5            # PCB clearance
+  csLip: 3                 # Lip height above plate (7-8mm full coverage, 2-3mm floating)
+  csBottomZ: 2.5           # Bottom plate thickness
+  csWallZ: csLip + standoffHeight + csBottomZ      # Total wall height
+
+  csScrewSize: 1.6         # M3 screws
+  csSOSize: 2.6            # M3 round stand offs. 5mm OD
+  # Sandwich
+  csWallSW: 7              # Wall thickness
+  csFilletSW: 3            # Fillet
+
+points:
+  zones:
+    matrix:
+      # Fix placement on KiCAD sheet.
+      anchor:
+        shift: [70, -200]
+      columns:
+        # Sofle v2/RGBv3 aggressive pinky stagger based
+        outer:
+          rows.mod.skip: true
+          key.column_net: col0
+        pinky:
+          rows.mod.skip: true
+          key.column_net: col1
+        ring:
+          key:
+            stagger: 9
+            column_net: col2
+          rows.mod.column_net: col1
+        middle:
+          key:
+            stagger: 2.5
+            column_net: col3
+          rows.mod.column_net: col2
+        index:
+          rows.mod.skip: true
+          key:
+            stagger: -2.5
+            column_net: col4
+          rows.mod.column_net: col3
+        inner:
+          rows.mod.skip: true
+          key:
+            stagger: -2.5
+            column_net: col5
+      rows:
+        # Four main rows, one partial row.
+        # Ergogen uses Cartesian Coordinates as opposed to a keyboard matrix
+        mod:
+          row_net: row4
+        bottom:
+          row_net: row3
+        home:
+          row_net: row2
+        top:
+          row_net: row1
+        num:
+          row_net: row0
+    thumbs:
+      anchor:
+        ref: matrix_index_bottom
+        shift: [0, -1U]
+      columns:
+        top:
+          key:
+            column_net: col3
+        middle:
+          key:
+            width: 1.25U
+            origin: [-0.6U, -0.8U]
+            splay: -30
+            column_net: col4
+        bottom:
+          key:
+            # (1.25+1)/2 - 1 = 0.125
+            shift: [0.125U, 0]
+            column_net: col5
+      rows:
+        cluster:
+          row_net: row4
+  mirror: &mirror
+    ref: matrix_inner_num
+    distance: 5kx
+
+outlines:
+  # outline with no padding
+  _raw:
+    - what: rectangle
+      where: true
+      size: [U,U]
+    - what: polygon
+      points:
+        - ref: thumbs_top_cluster
+          shift: [-0.5U, 0.5U]
+        - ref: thumbs_top_cluster
+          shift: [-0.5U, -0.5U]
+        - ref: thumbs_top_cluster
+          shift: [1U, -0.5U]
+        - ref: thumbs_top_cluster
+          shift: [1U, 0.5U]
+    - what: polygon
+      points:
+        # Extend Down
+        - ref: matrix_inner_bottom
+          shift: [-0.5U, 0.5U]
+        - ref: matrix_inner_bottom
+          shift: [-0.5U, -1U]
+        - ref: matrix_inner_bottom
+          shift: [0.5U, -1U]
+        - ref: matrix_inner_bottom
+          shift: [0.5U, 0.5U]
+    - what: polygon
+      points:
+        # Extend Left
+        - ref: thumbs_middle_cluster
+          shift: [-1U, 0.5U]
+        - ref: thumbs_middle_cluster
+          shift: [-1U, -0.5U]
+        - ref: thumbs_middle_cluster
+          shift: [1U, -0.5U]
+        - ref: thumbs_middle_cluster
+          shift: [1U, 0.5U]
+      fillet: baseFillet
+  keys:
+    - what: rectangle
+      where: true
+      size: [14,14]
+      fillet: switchFillet
+  combo_print:
+    # Used for printing out and testing layout
+    - name: _raw
+    - operation: subtract
+      name: keys
+
+  matrix_area_right:
+    $extends: outlines.matrix_area_left
+    $args: ["mirror_"]
+  matrix_area_left:
+    $params: [<mirror>]
+    $args: [""]
+    area:
+      what: rectangle
+      where:
+        - [/^<mirror>matrix_.*/]
+      size: [px, py]
+
+  thumb_area_right:
+    $extends: outlines.thumb_area_left
+    $args: [mirror_, right]
+  thumb_area_left:
+    $params: [<mirror>, <side>]
+    $args: ["", "left"]
+    cluster:
+      what: polygon
+      points:
+        # bottom middle
+        - ref: <mirror>thumbs_middle_cluster
+          shift: [-2U, -0.5py]
+        # bottom right
+        - ref: <mirror>thumbs_bottom_cluster
+          shift: [0.5px, -0.5py]
+        - ref: <mirror>thumbs_bottom_cluster
+          shift: [0.5px, 0.5py]
+        - ref: <mirror>thumbs_middle_cluster
+          shift: [-2U, 0.5py]
+  
+  _bottom_extension_right:
+    $extends: outlines._bottom_extension_left
+    $args: [mirror_]
+  _bottom_extension_left:
+    $params: [<mirror>]
+    $args: [""]
+    extension:
+      what: polygon
+      points:
+        - ref: <mirror>matrix_ring_mod
+          shift: [0, 1U]
+        - ref: <mirror>matrix_ring_mod
+          shift: [0, -0.5py]
+        - ref: <mirror>matrix_ring_mod
+          shift: [3U, -0.5py]
+        - ref: <mirror>matrix_ring_mod
+          shift: [3U, 1U]
+
+  _top_extension_plate_right:
+    $extends: outlines._top_extension_plate_left
+    $args: [mirror_]
+  _top_extension_plate_left:
+    $params: [<mirror>]
+    $args: [""]
+    extension:
+      what: polygon
+      points:
+        - ref: <mirror>matrix_middle_num
+          shift: [-1U-0.5px, 0.5py]
+        - ref: <mirror>matrix_middle_num
+          shift: [-1U-0.5px, -4U]
+        - ref: <mirror>matrix_middle_num
+          shift: [2U+0.5px, -4.5U]
+        - ref: <mirror>matrix_middle_num
+          shift: [2U+0.5px, -2U]
+        - ref: <mirror>matrix_middle_num
+          shift: [2U+0.5px, 0.5py]
+
+  # Includes the MCU and RJ45 area
+  _top_extension_right:
+    $extends: outlines._top_extension_left
+    $args: [mirror_]
+  _top_extension_left:
+    $params: [<mirror>]
+    $args: [""]
+    extension:
+      what: polygon
+      points:
+        - ref: <mirror>matrix_middle_num
+          shift: [-1U-0.5px, 0.5py]
+        - ref: <mirror>matrix_middle_num
+          shift: [-1U-0.5px, -4U]
+        - ref: <mirror>matrix_middle_num
+          shift: [2U+0.5px, -4.5U]
+        - ref: <mirror>matrix_middle_num
+          shift: [2U+0.5px, -2U]
+        - ref: <mirror>matrix_middle_num
+          shift: [4U, -2U]
+        - ref: <mirror>matrix_middle_num
+          shift: [4U, 0.5py]
+  
+  # PCB Base outline with no fillets
+  pcb_base_right:
+    $extends: outlines.pcb_base_left
+    $args: [right]
+  pcb_base_left:
+    $params: [<side>]
+    $args: [left]
+    thumb:
+      what: outline
+      name: thumb_area_<side>
+    matrix:
+      what: outline
+      name: matrix_area_<side>
+    bottom:
+      what: outline
+      name: _bottom_extension_<side>
+    top:
+      what: outline
+      name: _top_extension_<side>
+  
+  pcb_right:
+    $extends: outlines.pcb_left
+    $args: [right]
+  pcb_left:
+    $params: [<side>]
+    $args: [left]
+    expand1:
+      what: outline
+      name: pcb_base_<side>
+      expand: 0
+      fillet: baseFillet
+
+  # Plate Base outline with no fillets and no switch cut outs
+  plate_base_left:
+    $params: [<side>]
+    $args: [left]
+    thumb:
+      what: outline
+      name: thumb_area_<side>
+    matrix:
+      what: outline
+      name: matrix_area_<side>
+    bottom:
+      what: outline
+      name: _bottom_extension_<side>
+    top:
+      what: outline
+      name: _top_extension_plate_<side>
+  
+  # 3D printed case - Dedicated left and right sides      
+  # In theory we can mirror this in the slicer
+  case_outer_right:
+    $args: [right]
+    $extends: outlines.case_outer_left
+  # Couldn't get extends to work here
+  case_outer_left:
+    $params: [<side>]
+    $args: [left]
+    expand1:
+      what: outline
+      name: pcb_<side>
+      expand: csMargin+csWall
+
+  case_inner_right:
+    $args: [right]
+    $extends: outlines.case_inner_left
+  # Couldn't get extends to work here
+  case_inner_left:
+    $params: [<side>]
+    $args: [left]
+    expand1:
+      what: outline
+      name: pcb_<side>
+      expand: csMargin
+  
+  _rj45_front_inner_right:
+    $extends: outlines._rj45_front_inner_left
+    $args: [mirror_, right]
+  _rj45_front_inner_left:
+    $params: [<mirror>, <side>]
+    $args: ["", left]
+    inner:
+      what: rectangle
+      where:
+        - ref: <mirror>matrix_inner_top
+          shift: [1.73U, -0.18U]
+      size:
+        - 17 # 15.75 is exact
+        - 30 # 15 is exact
+
+  _mcu_front_inner_right:
+    $extends: outlines._mcu_front_inner_left
+    $args: [mirror_, right]
+  _mcu_front_inner_left:
+    $params: [<mirror>, <side>]
+    $args: ["", left]
+    inner:
+      what: rectangle
+      where:
+        - ref: <mirror>matrix_inner_num
+          shift: [1.2U,3.5]
+      size: # 18mm x 23.5mm body
+        - 13 # 13mm safe for USBC and housing cutout
+        - 40
+
+  # Non-FR4 version with M2 screw mounts
+  _mounts_right:
+    $extends: outlines._mounts_left
+    $args: [mirror_, right]
+  _mounts_left:
+    $params: [<mirror>, <side>]
+    $args: ["", left]
+    mount_top_left:
+      what: circle
+      radius: screwSize
+      where:   
+        ref: [<mirror>matrix_outer_top]
+        shift: [0.5kx, 0.5ky]
+    mount_bottom_left:
+      what: circle
+      radius: screwSize
+      where:
+        ref: [<mirror>matrix_outer_bottom]
+        shift: [0.5kx, 0.5ky]
+    mount_top_right:
+      what: circle
+      radius: screwSize
+      where:
+        ref: [<mirror>matrix_inner_top]
+        shift: [-0.5kx, 0.55ky]
+    mount_bottom_middle:
+      what: circle
+      radius: screwSize
+      where:
+        ref: [<mirror>thumbs_top_cluster]
+        shift: [-0.5kx, 0.55ky]
+    mount_bottom_right:
+      what: circle
+      radius: screwSize
+      where:
+        ref: [<mirror>thumbs_bottom_cluster]
+        shift: [-0.55kx, 0.3ky]
+  
+  # Sandwich case
+  _mounts_sw_right:
+    $extends: outlines._mounts_sw_left
+    $args: [mirror_, right]
+  _mounts_sw_left:
+    $params: [<mirror>, <side>]
+    $args: ["", left]
+    mount_top_left:
+      what: circle
+      radius: csScrewSize
+      where:   
+        ref: [<mirror>matrix_outer_num]
+        shift: [-0.5kx-csWallSW/2-csMargin, 0.5ky+csWallSW/2+csMargin]
+    mount_top_middle:
+      what: circle
+      radius: csScrewSize
+      where:
+        ref: [<mirror>matrix_middle_num]
+        shift: [0.5kx, 0.5ky+csMargin+csWallSW/2+1]
+    mount_bottom_left:
+      what: circle
+      radius: csScrewSize
+      where:
+        ref: [<mirror>matrix_outer_bottom]
+        shift: [-0.5kx-csWallSW/2-csMargin, -0.5ky-csWallSW/2-csMargin]
+    mount_bottom_middle:
+      what: circle
+      radius: csScrewSize
+      where:
+        ref: [<mirror>thumbs_top_cluster]
+        shift: [-0.5kx, -0.5ky-csMargin-csWallSW/2-1]
+    mount_bottom_right:
+      what: circle
+      radius: csScrewSize
+      where:
+        ref: [<mirror>thumbs_bottom_cluster]
+        shift: [-0.55kx, 0.5ky+csMargin+csWallSW/2+1]
+    mount_top_right:
+      what: circle
+      radius: csScrewSize
+      where:
+        ref: [<mirror>matrix_middle_num]
+        shift: [4U+csWallSW/2-csMargin, 0.5ky+csWallSW/2+csMargin]
+    mount_middle_right:
+      what: circle
+      radius: csScrewSize
+      where:
+        ref: [<mirror>matrix_middle_num]
+        shift: [4U+csWallSW/2-csMargin, -2U-3]
+
+  # Sandwich case - Middle
+  # TODO: Refactor mount points to Points
+  _mounts_middle_sw_right:
+    $extends: outlines._mounts_middle_sw_left
+    $args: [mirror_, right]
+  _mounts_middle_sw_left:
+    $params: [<mirror>, <side>]
+    $args: ["", left]
+    mount_top_left:
+      what: circle
+      radius: csSOSize
+      where:   
+        ref: [<mirror>matrix_outer_num]
+        shift: [-0.5kx-csWallSW/2-csMargin, 0.5ky+csWallSW/2+csMargin]
+    mount_top_middle:
+      what: circle
+      radius: csSOSize
+      where:
+        ref: [<mirror>matrix_middle_num]
+        shift: [0.5kx, 0.5ky+csMargin+csWallSW/2+1]
+    mount_bottom_left:
+      what: circle
+      radius: csSOSize
+      where:
+        ref: [<mirror>matrix_outer_bottom]
+        shift: [-0.5kx-csWallSW/2-csMargin, -0.5ky-csWallSW/2-csMargin]
+    mount_bottom_middle:
+      what: circle
+      radius: csSOSize
+      where:
+        ref: [<mirror>thumbs_top_cluster]
+        shift: [-0.5kx, -0.5ky-csMargin-csWallSW/2-1]
+    mount_bottom_right:
+      what: circle
+      radius: csSOSize
+      where:
+        ref: [<mirror>thumbs_bottom_cluster]
+        shift: [-0.55kx, 0.5ky+csMargin+csWallSW/2+1]
+    mount_top_right:
+      what: circle
+      radius: csSOSize
+      where:
+        ref: [<mirror>matrix_middle_num]
+        shift: [4U+csWallSW/2-csMargin, 0.5ky+csWallSW/2+csMargin]
+    mount_middle_right:
+      what: circle
+      radius: csSOSize
+      where:
+        ref: [<mirror>matrix_middle_num]
+        shift: [4U+csWallSW/2-csMargin, -2U-3]
+
+  case_sw_outer_right:
+    $extends: outlines.case_sw_outer_left
+    $args: [right]
+  # Couldn't get extends to work here
+  case_sw_outer_left:
+    $params: [<side>]
+    $args: [left]
+    expand1:
+      what: outline
+      name: pcb_base_<side>
+      joints: pointy
+      expand: csMargin+csWallSW
+      fillet: csFilletSW
+    mounts:
+      what: outline
+      name: _mounts_<side>
+      operation: subtract
+    mounts_sw:
+      what: outline
+      name: _mounts_sw_<side>
+      operation: subtract
+
+  _top_extension_cover_subtract:
+    extension:
+      what: polygon
+      points:
+        # top left
+        - ref: matrix_middle_num
+          shift: [-2U, 2U]
+        # bottom left
+        - ref: matrix_middle_num
+          shift: [-2U, -6U]
+        # bottom right
+        - ref: matrix_middle_num
+          shift: [4U, -6U]
+        - ref: matrix_middle_num
+          shift: [4U, -2U-csMargin-csWallSW]
+        - ref: matrix_middle_num
+          shift: [2U+0.5px+csMargin, -2U-csMargin-csWallSW]
+        # top right
+        - ref: matrix_middle_num
+          shift: [2U+0.5px+csMargin, 2U]
+
+  case_cover_sw_left:
+    $params: [<side>]
+    $args: [left]
+    expand1:
+      what: outline
+      name: _top_extension_<side>
+      joints: pointy
+      expand: csMargin+csWallSW
+      fillet: csFilletSW
+    mounts_sw:
+      what: outline
+      name: _mounts_sw_<side>
+      operation: subtract
+    subtract1:
+      what: outline
+      name: _top_extension_cover_subtract
+      operation: subtract
+
+  # Expanded case cover sandwich to subtract for lip
+  _case_cover_sw_expand_left:
+    $params: [<side>]
+    $args: [left]
+    expand1:
+      what: outline
+      name: case_cover_sw_<side>
+      expand: csMargin *2
+
+  # Expanded plate to subtract for lip
+  _plate_base_expanded_left:
+    $params: [<side>]
+    $args: [left]
+    expand1:
+      what: outline
+      name: plate_base_<side>
+      expand: csMargin
+  
+  # Similar to Plate, Expand, subtract the Inner and the Cover area
+  # This outline is broken in FreeCAD
+  case_lip_sw_left:
+    $params: [<side>]
+    $args: [left]
+    plate_base:
+      what: outline
+      name: plate_base_<side>
+      joints: pointy
+      expand: csMargin+csWallSW
+      fillet: csFilletSW
+    subtract2:
+      what: outline
+      name: _case_cover_sw_expand_<side>
+      operation: subtract
+    subtract1:
+      what: outline
+      name: _plate_base_expanded_<side>
+      fillet: baseFillet
+      operation: subtract
+    mounts_sw:
+      what: outline
+      name: _mounts_sw_<side>
+      operation: subtract
+  
+  # Expanded Lip for case_sw_middle
+  # This could be refactored since it's similar to case_lip_sw_left
+  # Expanded Plate, with no Fillet. Remove Mounts and Plate base subtraction
+  case_lip_middle_sw_left:
+    $params: [<side>]
+    $args: [left]
+    plate_base:
+      what: outline
+      name: plate_base_<side>
+      joints: pointy
+      expand: csMargin+csWallSW+1
+    subtract2:
+      what: outline
+      name: _case_cover_sw_expand_<side>
+      operation: subtract
+
+  # Bottom & Plate do not need to be mirrored
+  # FR4 version. Screw holes added on PCB
+  bottom:
+    thumb:
+      what: outline
+      name: thumb_area_left
+      fillet: baseFillet
+    matrix:
+      what: outline
+      name: matrix_area_left
+      fillet: baseFillet
+    bottom:
+      what: outline
+      name: _bottom_extension_left
+    top:
+      what: outline
+      name: _top_extension_left
+      fillet: baseFillet
+  plate:
+    thumb:
+      what: outline
+      name: thumb_area_left
+      fillet: baseFillet
+    matrix:
+      what: outline
+      name: matrix_area_left
+      fillet: baseFillet
+    bottom:
+      what: outline
+      name: _bottom_extension_left
+    top:
+      what: outline
+      name: _top_extension_plate_left
+      fillet: baseFillet
+    switch:
+      what: rectangle
+      size: [14,14]
+      fillet: switchFillet
+      where: true
+      operation: subtract
+
+  # Standalone plate for non-FR4 version
+  plate_standalone:
+    plate:
+      what: outline
+      name: plate
+    mounts:
+      what: outline
+      name: _mounts_left
+      operation: subtract
+
+pcbs:
+  pando58_right:
+    $args: [right, "mirror_"]
+    $extends: pcbs.pando58_left
+    footprints:
+      diode:
+        adjust:
+          rotate: -90
+          shift: [-8, -1]
+      text_side:
+        params:
+          text: Right side\nMCU face UP
+      col_row3_to_row4_pinky_back_route:
+          params:
+            route: "b(-7,-2)(-26,0)(-26,7)"
+      col_row3_to_row4_ring_back_route:
+          params:
+            route: "b(-3,5)(-22,7)(-26,13)"
+      col_row3_to_row4_middle_back_route:
+          params:
+            route: "b(-3,5)(-6,13)(-9,14.5)(-24,13)(-26,18)"
+      col_row3_to_row4_index_back_route:
+          params:
+            route: "b(-3,5)(-7,5)(-10,12)(-10,27)(-22,34)(-25,32)"
+      col_row3_to_row4_inner_back_route:
+          params:
+            route: "b(-3,5)(-8,5)(-9,12)(-9,16)(-33,29.5)(-32,35)"
+      col0_to_pad_route:
+        params:
+          route: "b(-7,-3)(-7,-7)(-9,-9.5)(-27.5,-9.5)(-28.1,-10.5)(-28.1,-15)(-33,-20)(-102,-20)(-109,-15)"
+      col1_to_pad_route:
+        params:
+          route: "b(-7,-3)(-7,-5)(-9.6,-7)(-9.6,-14.5)(-14.6,-19.5)(-82,-19.5)(-90,-12)"
+      col2_to_pad_route:
+        params:
+          net: "{{column_net}}"
+          route: "b(-7,-3)(-7,-7)(-11,-10)(-62,-10)(-71,-1.2)"
+      col3_to_pad_route:
+        params:
+          route: "b(-7,-3)(-7,-5.5)(-12,-7)(-42,-7)(-49,0)(-49,4)(-53,4)"
+      col4_to_pad_route:
+        params:
+          route: "b(-7,-3)(-7,-7)(-12,-9)(-22,-9)(-29,-2)(-29,4)(-33,4)"
+      col5_to_pad_route:
+          params:
+            route: "b(-2,5)(-12,5)(-14,4.5)"
+      row_col0_to_col1_front_route:
+          params:
+            route: "f(8,5)(6,7)(-7,7)(-11,5)"
+      row_col1_to_col2_front_route:
+          params:
+            route: "f(8,5)(6,7)(-4,7)(-11,0)(-11,-5)"
+      row_col2_to_col3_front_route:
+          params:
+            route: "f(8,5)(6,7)(-4,7)(-11,2)"
+      row_col3_to_col4_front_route:
+          params:
+            route: "f(8,5)(6,7)(-11,7)"
+      row_col4_to_col5_front_route:
+          params:
+            route: "f(8,5)(6,7)(-11,7)"
+      row_col3_to_col4_cluster_front_route:
+          params:
+            route: "f(8,5)(8,8)(-16,8)"
+      row_col4_to_col5_cluster_front_route:
+          params:
+            route: "f(8,5)(6,7)(-11,7)(-14,4)"
+      row0_to_pad_route:
+          params:
+            route: "f(8,5)(5,8.5)(-24,8.5)(-31,7)"
+      row1_to_pad_route:
+          params:
+            route: "f(8,5)(6,8)(-10,7.8)(-33.8,-12.2)(-33.8,-15)(-32,-15)"
+      row2_to_pad_route:
+          params:
+            route: "f(8,5)(6,8)(-7,8)(-7,-8)(-34.5,-31)(-34.5,-36)(-32,-36)"
+      row3_to_pad_route:
+          params:
+            route: "f(8,5)(6,8)(-7.5,8)(-7.5,-26.8)(-35,-49.8)(-35,-58)(-32,-58)"
+      row4_to_pad_route:
+          params:
+            route: "f(8,5)(6,7)(-7.5,7)(-7.5,-7.5)(-27,-7.5)(-27,-43.1)(-54.5,-66.1)(-54.5,-77)(-51.5,-77)"
+      rj45_gnd_to_pad_route:
+        params:
+          route: "b(-31,3)(-33,1)(-27,-6)(-27,-30)(-30,-30)"
+      rj45_data_to_pad_route:
+        params:
+          route: "b(-28,4)(-20,-2)(-20,-33)(-16,-33)"
+      rj45_vcc_to_pad_route:
+        params:
+          route: "b(-31,7)(-36,2)(-36,-27)(-32,-27)"
+
+  pando58_left:
+    $params: [<side>, <mirror>]
+    $args: [left, ""]
+    template: kicad8
+    outlines:
+      main:
+        outline: pcb_<side>
+    footprints:
+      mx:
+        what: ceoloide/switch_mx
+        where:
+          -
+            - /^<mirror>(matrix|thumbs)_.*/
+        params:
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+          include_corner_marks: true
+          solder: true
+          hotswap: true
+          reversible: false
+          include_keycap: true
+      diode:
+        what: ceoloide/diode_tht_sod123
+        where:
+          -
+            - /^<mirror>(matrix|thumbs)_.*/
+        adjust:
+          shift: [8, -1]
+          rotate: 90
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+          reversible: false
+          include_tht: true
+      logo:
+        what: pando58_logo
+        where: 
+          -
+            - /^<mirror>matrix_inner_top$/
+        params:
+          reversible: true
+        adjust:
+          shift: [0.9U, -0.18U]
+      rj45:
+        what: rj45_molex_43860_3wire
+        where:
+          -
+            - /^<mirror>matrix_inner_top$/
+        params:
+          GND: GND
+          VCC: P3V3
+          DATA: GP0
+        adjust:
+          shift: [1.73U, -0.18U]
+          rotate: 90
+      mcu:
+        what: rp2040zero
+        where:
+          -
+            - /^<mirror>matrix_inner_num$/
+        params:
+          GP2: col0
+          GP3: col1
+          GP4: col2
+          GP5: col3
+          GP6: col4
+          GP7: col5
+          GP14: row0
+          GP15: row1
+          GP26: row2
+          GP27: row3
+          GP28: row4
+          hole_for_buttons: false
+          bottom_pins: false
+        adjust:
+          shift: [1.2U,3.5]
+      text:
+        what: ceoloide/utility_text
+        where:
+          -
+            - /^<mirror>matrix_inner_num$/
+        params:
+          reversible: true
+          bold: true
+          italic: true
+          text: Pando58
+          face: IBM Plex Mono
+          width: 3
+          height: 3
+        adjust:
+          shift: [1.3U, -0.6U]
+      text_footer:
+        what: ceoloide/utility_text
+        where:
+          -
+            - /^<mirror>matrix_ring_mod$/
+        params:
+          reversible: true
+          face: IBM Plex Mono
+          text: *footer_text
+        adjust:
+          shift: [1U, -0.45U]
+      text_side:
+        what: ceoloide/utility_text
+        where:
+          -
+            - /^<mirror>matrix_inner_num$/
+        params:
+          text: Left side\nMCU face UP
+          face: IBM Plex Mono
+        adjust:
+          shift: [1.2U, 0.2U]
+          rotate: 90
+      switch_col_route:
+          what: ceoloide/utility_router
+          where:
+          -
+            - /^<mirror>(matrix|thumbs)_.*/
+          params:
+            net: "{{column_net}}"
+            route: "b(-7,-2)(-7,2)(-2,5)"
+      switch_row_route:
+          what: ceoloide/utility_router
+          where:
+          -
+            - /^<mirror>(matrix|thumbs)_.*/
+          params:
+            net: "{{column_net}}"
+            route: "b(8,3)(8,4)"
+      switch_1_route:
+          what: ceoloide/utility_router
+          where:
+          -
+            - /^<mirror>(matrix|thumbs)_.*/
+          params:
+            net: "{{column_net}}"
+            route: "b(6,-4)(8,-3)"
+      switch_2_route:
+          what: ceoloide/utility_router
+          where:
+          -
+            - /^<mirror>(matrix|thumbs)_.*/
+          params:
+            net: "{{column_net}}"
+            route: "b(8,-3)(8,-1)"
+      switch_3_route:
+          what: ceoloide/utility_router
+          where:
+          -
+            - /^<mirror>(matrix|thumbs)_.*/
+          params:
+            net: "{{column_net}}"
+            route: "b(8,-0.5)(4,3)"
+      col_row0_to_row3_back_route:
+          what: ceoloide/utility_router
+          where: [/^<mirror>matrix_.*_(num|top|home)$/]
+          params:
+            net: "{{column_net}}"
+            route: "b(-3,5)(-7,13)(-7,16)"
+      col_row3_to_row4_pinky_back_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>matrix_pinky_bottom$/
+          params:
+            net: "{{column_net}}"
+            route: "b(-2,5)(0,7)(12,7)"
+      col_row3_to_row4_ring_back_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>matrix_ring_bottom$/
+          params:
+            net: "{{column_net}}"
+            route: "b(-2,5)(0,7)(12,7)(12,13)"
+      col_row3_to_row4_middle_back_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>matrix_middle_bottom$/
+          params:
+            net: "{{column_net}}"
+            route: "b(-2,5)(0,7)(13,8)(12,18)"
+      col_row3_to_row4_index_back_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>matrix_index_bottom$/
+          params:
+            net: "{{column_net}}"
+            route: "b(-2,5)(0,7)(12,7)(14,11)(24,11)(20,21)"
+      col_row3_to_row4_inner_back_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>matrix_inner_bottom$/
+          params:
+            net: "{{column_net}}"
+            route: "b(-2,5)(0,7)(9,7)(9,16)(23.5,23.5)(20.5,28.5)"
+      col0_to_pad_route:
+        what: ceoloide/utility_router
+        where: /^<mirror>matrix_outer_num$/
+        params:
+          net: "{{column_net}}"
+          route: "b(-7,-3)(-7,-7)(-5,-9.5)(27.5,-9.5)(28.5,-10.5)(28.5,-15)(33,-20.5)(99.5,-20.5)(105.5,-13.8)(124,-13.8)(125,-14.3)"
+      col1_to_pad_route:
+        what: ceoloide/utility_router
+        where: /^<mirror>matrix_pinky_num$/
+        params:
+          net: "{{column_net}}"
+          route: "b(-7,-3)(-7,-7)(-5,-9)(9,-9)(10,-10)(10,-14.5)(14.6,-20)(80.2,-20)(88,-11.3)(105,-11.3)(106,-11.8)"
+      col2_to_pad_route:
+        what: ceoloide/utility_router
+        where: /^<mirror>matrix_ring_num$/
+        params:
+          net: "{{column_net}}"
+          route: "b(-7,-3)(-7,-7)(-4,-10.5)(60.8,-10.5)(68.8,-1.2)(68.8,0.2)(86,0.2)(87,-0.5)"
+      col3_to_pad_route:
+        what: ceoloide/utility_router
+        where: /^<mirror>matrix_middle_num$/
+        params:
+          net: "{{column_net}}"
+          route: "b(-7,-3)(-7,-7)(-5,-7.5)(41.6,-7.5)(49.2,1.4)(49.2,5.3)(67,5.3)(68,4.5)"
+      col4_to_pad_route:
+        what: ceoloide/utility_router
+        where: /^<mirror>matrix_index_num$/
+        params:
+          net: "{{column_net}}"
+          route: "b(-7,-3)(-7,-7)(-5,-9)(22.5,-9)(29.5,-1)(29.5,5.3)(48,5.3)(49,4.5)"
+      col5_to_pad_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>matrix_inner_num$/
+          params:
+            net: "{{column_net}}"
+            route: "b(-2,5)(1,8.5)(25,8.5)(30,4.5)"
+      row_col0_to_col1_front_route:
+          what: ceoloide/utility_router
+          where: [/^<mirror>matrix_outer_.*$/]
+          params:
+            net: "{{row_net}}"
+            route: "f(8,5)(12,7)(25,7)(27,5)"
+      row_col1_to_col2_front_route:
+          what: ceoloide/utility_router
+          where: [/^<mirror>matrix_pinky_.*$/]
+          params:
+            net: "{{row_net}}"
+            route: "f(8,4.5)(14,-2)(25,-2)(27,-4.5)"
+      row_col2_to_col3_front_route:
+          what: ceoloide/utility_router
+          where: [/^<mirror>matrix_ring_.*$/]
+          params:
+            net: "{{row_net}}"
+            route: "f(8,5)(25,5)(27,3)"
+      row_col3_to_col4_front_route:
+          what: ceoloide/utility_router
+          where: [/^<mirror>matrix_middle_.*$/]
+          params:
+            net: "{{row_net}}"
+            route: "f(8,5)(13,10)(25,10)(27,8)"
+      row_col4_to_col5_front_route:
+          what: ceoloide/utility_router
+          where: [/^<mirror>matrix_index_(num|top|home|bottom)$/]
+          params:
+            net: "{{row_net}}"
+            route: "f(8,5)(14,10)(25,10)(27,8)"
+      row_col3_to_col4_cluster_front_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>thumbs_top_cluster$/
+          params:
+            net: "{{row_net}}"
+            route: "f(8,4)(12, 10)(26,17)(29,16)"
+      row_col4_to_col5_cluster_front_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>thumbs_middle_cluster$/
+          params:
+            net: "{{row_net}}"
+            route: "f(8,5)(13,7)(27,7)(29,5)"
+      row0_to_pad_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>matrix_inner_num$/
+          params:
+            net: "{{row_net}}"
+            route: "f(8,5)(10,6.5)(14,6.5)"
+      row1_to_pad_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>matrix_inner_top$/
+          params:
+            net: "{{row_net}}"
+            route: "f(8,5)(13,5)(17,1)(17,-14)(16,-15)"
+      row2_to_pad_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>matrix_inner_home$/
+          params:
+            net: "{{row_net}}"
+            route: "f(7.5,4.5)(6.5,4)(6.5,-6)(18,-18)(18,-34)(16,-36)"
+      row3_to_pad_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>matrix_inner_bottom$/
+          params:
+            net: "{{row_net}}"
+            route: "f(8.5,5)(9.5,4)(9.5,-27)(19,-37)(19,-58)(16,-58)"
+      row4_to_pad_route:
+          what: ceoloide/utility_router
+          where: /^<mirror>thumbs_top_cluster$/
+          params:
+            net: "{{row_net}}"
+            route: "f(8,5)(16,5)(29,-9)(29,-42.5)(39,-53.5)(39,-77)(34,-77)"
+      rj45_gnd_to_pad_route:
+        what: ceoloide/utility_router
+        where: /^<mirror>matrix_inner_top$/
+        params:
+          net: "{{gnd_net}}"
+          route: "b(31,4)(34,4)(37,0)(37,-31)(34,-33.8)(19,-33.8)(16,-30)"
+      rj45_data_to_pad_route:
+        what: ceoloide/utility_router
+        where: /^<mirror>matrix_inner_top$/
+        params:
+          route: "b(29,2.9)(34,2.9)(36.5,-0.5)(36.5,-30.5)(34,-33)(32,-33)"
+      rj45_vcc_to_pad_route:
+        what: ceoloide/utility_router
+        where: /^<mirror>matrix_inner_top$/
+        params:
+          route: "b(31,0)(34,0)(36,-1)(36,-29)(34,-31.4)(19,-31.4)(16,-28)"
+      mount_top_left:
+        what: ceoloide/mounting_hole_plated
+        where: /^<mirror>matrix_outer_top$/
+        adjust.shift: [0.5kx, 0.5ky]
+        params:
+          drill: 3.2
+      mount_bottom_left:
+        what: ceoloide/mounting_hole_plated
+        where: /^<mirror>matrix_outer_bottom$/
+        adjust.shift: [0.5kx, 0.5ky]
+        params:
+          drill: 3.2
+      mount_top_right:
+        what: ceoloide/mounting_hole_plated
+        where: /^<mirror>matrix_inner_top$/
+        adjust.shift: [-0.5kx, 0.55ky]
+        params:
+          drill: 3.2
+      mount_bottom_middle:
+        what: ceoloide/mounting_hole_plated
+        where: /^<mirror>thumbs_top_cluster$/
+        adjust.shift: [-0.5kx, 0.55ky]
+        params:
+          drill: 3.2
+      mount_bottom_right:
+        what: ceoloide/mounting_hole_plated
+        where: /^<mirror>thumbs_bottom_cluster$/
+        adjust.shift: [-0.55kx, 0.3ky]
+        params:
+          drill: 3.2
+
+  pando58_bottom:
+    template: kicad8
+    outlines:
+      main:
+        outline: bottom
+    footprints:
+      mount_top_left:
+        what: ceoloide/mounting_hole_plated
+        where: matrix_outer_top
+        adjust.shift: [0.5kx, 0.5ky]
+        params:
+          drill: 2.2
+      mount_bottom_left:
+        what: ceoloide/mounting_hole_plated
+        where: matrix_outer_bottom
+        adjust.shift: [0.5kx, 0.5ky]
+        params:
+          drill: 2.2
+      mount_top_right:
+        what: ceoloide/mounting_hole_plated
+        where: matrix_inner_top
+        adjust.shift: [-0.5kx, 0.55ky]
+        params:
+          drill: 2.2
+      mount_bottom_middle:
+        what: ceoloide/mounting_hole_plated
+        where: thumbs_top_cluster
+        adjust.shift: [-0.5kx, 0.55ky]
+        params:
+          drill: 2.2
+      mount_bottom_right:
+        what: ceoloide/mounting_hole_plated
+        where: thumbs_bottom_cluster
+        adjust.shift: [-0.55kx, 0.3ky]
+        params:
+          drill: 2.2
+    
+  pando58_plate:
+    template: kicad8
+    outlines:
+      main:
+        outline: plate
+    footprints:
+      mount_top_left:
+        what: ceoloide/mounting_hole_plated
+        where: matrix_outer_top
+        adjust.shift: [0.5kx, 0.5ky]
+        params:
+          drill: 2.2
+      mount_bottom_left:
+        what: ceoloide/mounting_hole_plated
+        where: matrix_outer_bottom
+        adjust.shift: [0.5kx, 0.5ky]
+        params:
+          drill: 2.2
+      mount_top_right:
+        what: ceoloide/mounting_hole_plated
+        where: matrix_inner_top
+        adjust.shift: [-0.5kx, 0.55ky]
+        params:
+          drill: 2.2
+      mount_bottom_middle:
+        what: ceoloide/mounting_hole_plated
+        where: thumbs_top_cluster
+        adjust.shift: [-0.5kx, 0.55ky]
+        params:
+          drill: 2.2
+      mount_bottom_right:
+        what: ceoloide/mounting_hole_plated
+        where: thumbs_bottom_cluster
+        adjust.shift: [-0.55kx, 0.3ky]
+        params:
+          drill: 2.2
+
+cases:
+  plate_standalone:
+    - name: plate_standalone
+      extrude: 1.6
+
+  # 3D case
+  case_bottom_right:
+    $args: [right]
+    $extends: cases.case_bottom_left
+  case_bottom_left:
+    $params: [<side>]
+    $args: [left]
+    wall:
+      name: case_outer_<side>
+      extrude: csWallZ
+      operation: add
+    gap:
+      name: case_inner_<side>
+      shift: [0, 0, csBottomZ]
+      extrude: csWallZ
+      operation: subtract
+    mounts:
+      name: _mounts_<side>
+      extrude: csWallZ
+      operation: subtract
+    # subtractions for MCU USB and RJ45
+    rj45:
+        name: _rj45_front_inner_<side>
+        extrude: 100
+        shift: [0,0,csBottomZ+6]
+        rotate: [0,0,90]
+        operation: subtract
+    # this is not required when using hot swap sockets
+    # probably needs to be shifted similar to RJ45 if using just socket headers
+    mcu:
+        name: _mcu_front_inner_<side>
+        extrude: 100
+        shift: [0,0,csBottomZ+11]
+        operation: subtract
+
+  # Sandwich case
+  # Bottom and Cover only need mirror versions if we add PEM stand offs
+  case_sw_bottom:
+    - name: case_sw_outer_left
+      extrude: 1.6
+  case_sw_cover:
+    - name: case_cover_sw_left
+      extrude: 1.6
+  case_sw_lip:
+    - name: case_lip_sw_left
+      extrude: 1.6
+
+  # Non-Sheet metal middle section
+  # Screw holes will be the size of the stand offs
+  # Start with case_sw_outer
+  # Subtract case lip
+  # Subtract RJ45 hole
+  # Subtract USBC hole
+  case_sw_middle:
+    case_sw_outer:
+      name: case_sw_outer_left
+      extrude: 25
+      operation: add
+    # We could expand this further since it is not seen on the inside
+    case_inner:
+      name: case_inner_left
+      extrude: 40
+      # A fillet can't be done here
+      #fillet: baseFillet
+      operation: subtract
+    # This needs an expanded version
+    case_lip_sw:
+      name: case_lip_middle_sw_left
+      extrude: 30
+      shift: [0,0,standoffHeight]
+      operation: subtract
+    # subtractions for MCU USB and RJ45
+    rj45:
+        name: _rj45_front_inner_left
+        extrude: 100
+        shift: [0,0,6]
+        rotate: [0,0,90]
+        operation: subtract
+    # this is not required when using hot swap sockets
+    # probably needs to be shifted similar to RJ45 if using just socket headers
+    mcu:
+      name: _mcu_front_inner_left
+      extrude: 100
+      # Standoff + Lip
+      shift: [0,0,standoffHeight+2.5]
+      operation: subtract
+    cover:
+      name: _case_cover_sw_expand_left
+      extrude: 30
+      shift: [0,0,standoffCoverHeight]
+      operation: subtract
+    mounts:
+      name: _mounts_middle_sw_left
+      extrude: 100
+      operation: subtract

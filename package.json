@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@jscad/cli": "^1.10.0"
+  }
+}
