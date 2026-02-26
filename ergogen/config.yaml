@@ -31,7 +31,7 @@ units:
   csWallZ: csLip + standoffHeight + csBottomZ      # Total wall height
 
   csScrewSize: 1.6         # M3 screws
-  csSOSize: 2.6            # M3 round stand offs. 5mm OD
+  csSOSize: 2.7            # M3 round stand offs. 5mm OD
   # Sandwich
   csWallSW: 7              # Wall thickness
   csFilletSW: 3            # Fillet
@@ -39,6 +39,8 @@ units:
 points:
   zones:
     matrix:
+      key:
+        tags: ['key']
       # Fix placement on KiCAD sheet.
       anchor:
         shift: [70, -200]
@@ -85,6 +87,8 @@ points:
         num:
           row_net: row0
     thumbs:
+      key:
+        tags: ['key']
       anchor:
         ref: matrix_index_bottom
         shift: [0, -1U]
@@ -114,7 +118,7 @@ outlines:
   # outline with no padding
   _raw:
     - what: rectangle
-      where: true
+      where: /key/
       size: [U,U]
     - what: polygon
       points:
@@ -151,7 +155,7 @@ outlines:
       fillet: baseFillet
   keys:
     - what: rectangle
-      where: true
+      where: /key/
       size: [14,14]
       fillet: switchFillet
   combo_print:
@@ -655,7 +659,7 @@ outlines:
       what: rectangle
       size: [14,14]
       fillet: switchFillet
-      where: true
+      where: /key/
       operation: subtract
 
   # Standalone plate for non-FR4 version
