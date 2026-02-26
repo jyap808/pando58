@@ -110,6 +110,27 @@ points:
       rows:
         cluster:
           row_net: row4
+    # Mounts - Inner
+    mount_inner_top_left:
+      anchor:
+        ref: matrix_outer_top
+        shift: [0.5kx, 0.5ky]
+    mount_inner_bottom_left:
+      anchor:
+        ref: matrix_outer_bottom
+        shift: [0.5kx, 0.5ky]
+    mount_inner_top_right:
+      anchor:
+        ref: matrix_inner_top
+        shift: [-0.5kx, 0.55ky]
+    mount_inner_bottom_middle:
+      anchor:
+        ref: thumbs_top_cluster
+        shift: [-0.5kx, 0.55ky]
+    mount_inner_bottom_right:
+      anchor:
+        ref: thumbs_bottom_cluster
+        shift: [-0.55kx, 0.3ky]
   mirror: &mirror
     ref: matrix_inner_num
     distance: 5kx
@@ -369,36 +390,11 @@ outlines:
   _mounts_left:
     $params: [<mirror>, <side>]
     $args: ["", left]
-    mount_top_left:
+    mount_inner:
       what: circle
       radius: screwSize
       where:   
-        ref: [<mirror>matrix_outer_top]
-        shift: [0.5kx, 0.5ky]
-    mount_bottom_left:
-      what: circle
-      radius: screwSize
-      where:
-        ref: [<mirror>matrix_outer_bottom]
-        shift: [0.5kx, 0.5ky]
-    mount_top_right:
-      what: circle
-      radius: screwSize
-      where:
-        ref: [<mirror>matrix_inner_top]
-        shift: [-0.5kx, 0.55ky]
-    mount_bottom_middle:
-      what: circle
-      radius: screwSize
-      where:
-        ref: [<mirror>thumbs_top_cluster]
-        shift: [-0.5kx, 0.55ky]
-    mount_bottom_right:
-      what: circle
-      radius: screwSize
-      where:
-        ref: [<mirror>thumbs_bottom_cluster]
-        shift: [-0.55kx, 0.3ky]
+        - [/^<mirror>mount_inner_.*/]
   
   # Sandwich case
   _mounts_sw_right:
@@ -1077,34 +1073,10 @@ pcbs:
         where: /^<mirror>matrix_inner_top$/
         params:
           route: "b(31,0)(34,0)(36,-1)(36,-29)(34,-31.4)(19,-31.4)(16,-28)"
-      mount_top_left:
+      mount_inner:
         what: ceoloide/mounting_hole_plated
-        where: /^<mirror>matrix_outer_top$/
-        adjust.shift: [0.5kx, 0.5ky]
-        params:
-          drill: 3.2
-      mount_bottom_left:
-        what: ceoloide/mounting_hole_plated
-        where: /^<mirror>matrix_outer_bottom$/
-        adjust.shift: [0.5kx, 0.5ky]
-        params:
-          drill: 3.2
-      mount_top_right:
-        what: ceoloide/mounting_hole_plated
-        where: /^<mirror>matrix_inner_top$/
-        adjust.shift: [-0.5kx, 0.55ky]
-        params:
-          drill: 3.2
-      mount_bottom_middle:
-        what: ceoloide/mounting_hole_plated
-        where: /^<mirror>thumbs_top_cluster$/
-        adjust.shift: [-0.5kx, 0.55ky]
-        params:
-          drill: 3.2
-      mount_bottom_right:
-        what: ceoloide/mounting_hole_plated
-        where: /^<mirror>thumbs_bottom_cluster$/
-        adjust.shift: [-0.55kx, 0.3ky]
+        where:   
+          - [/^<mirror>mount_inner_.*/]
         params:
           drill: 3.2
 
@@ -1114,34 +1086,10 @@ pcbs:
       main:
         outline: bottom
     footprints:
-      mount_top_left:
+      mount_inner:
         what: ceoloide/mounting_hole_plated
-        where: matrix_outer_top
-        adjust.shift: [0.5kx, 0.5ky]
-        params:
-          drill: 2.2
-      mount_bottom_left:
-        what: ceoloide/mounting_hole_plated
-        where: matrix_outer_bottom
-        adjust.shift: [0.5kx, 0.5ky]
-        params:
-          drill: 2.2
-      mount_top_right:
-        what: ceoloide/mounting_hole_plated
-        where: matrix_inner_top
-        adjust.shift: [-0.5kx, 0.55ky]
-        params:
-          drill: 2.2
-      mount_bottom_middle:
-        what: ceoloide/mounting_hole_plated
-        where: thumbs_top_cluster
-        adjust.shift: [-0.5kx, 0.55ky]
-        params:
-          drill: 2.2
-      mount_bottom_right:
-        what: ceoloide/mounting_hole_plated
-        where: thumbs_bottom_cluster
-        adjust.shift: [-0.55kx, 0.3ky]
+        where:   
+          - [/^mount_inner_.*/]
         params:
           drill: 2.2
     
@@ -1151,34 +1099,10 @@ pcbs:
       main:
         outline: plate
     footprints:
-      mount_top_left:
+      mount_inner:
         what: ceoloide/mounting_hole_plated
-        where: matrix_outer_top
-        adjust.shift: [0.5kx, 0.5ky]
-        params:
-          drill: 2.2
-      mount_bottom_left:
-        what: ceoloide/mounting_hole_plated
-        where: matrix_outer_bottom
-        adjust.shift: [0.5kx, 0.5ky]
-        params:
-          drill: 2.2
-      mount_top_right:
-        what: ceoloide/mounting_hole_plated
-        where: matrix_inner_top
-        adjust.shift: [-0.5kx, 0.55ky]
-        params:
-          drill: 2.2
-      mount_bottom_middle:
-        what: ceoloide/mounting_hole_plated
-        where: thumbs_top_cluster
-        adjust.shift: [-0.5kx, 0.55ky]
-        params:
-          drill: 2.2
-      mount_bottom_right:
-        what: ceoloide/mounting_hole_plated
-        where: thumbs_bottom_cluster
-        adjust.shift: [-0.55kx, 0.3ky]
+        where:   
+          - [/^mount_inner_.*/]
         params:
           drill: 2.2
 
