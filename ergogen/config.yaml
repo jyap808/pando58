@@ -131,6 +131,36 @@ points:
       anchor:
         ref: thumbs_bottom_cluster
         shift: [-0.55kx, 0.3ky]
+    # Mounts - Sandwich Outer
+    mount_sw_outer_top_left:
+      anchor:
+        ref: matrix_outer_num
+        shift: [-0.5kx-csWallSW/2-csMargin, 0.5ky+csWallSW/2+csMargin]
+    mount_sw_outer_top_middle:
+      anchor:
+        ref: matrix_middle_num
+        shift: [0.5kx, 0.5ky+csMargin+csWallSW/2+1]
+    mount_sw_outer_bottom_left:
+      anchor:
+        ref: matrix_outer_bottom
+        shift: [-0.5kx-csWallSW/2-csMargin, -0.5ky-csWallSW/2-csMargin]
+    mount_sw_outer_bottom_middle:
+      anchor:
+        ref: thumbs_top_cluster
+        shift: [-0.5kx, -0.5ky-csMargin-csWallSW/2-1]
+    mount_sw_outer_bottom_right:
+      anchor:
+        ref: thumbs_bottom_cluster
+        shift: [-0.55kx, 0.5ky+csMargin+csWallSW/2+1]
+    # Mounts - Sandwich Cover
+    mount_sw_cover_top_right:
+      anchor:
+        ref: matrix_middle_num
+        shift: [4U+csWallSW/2-csMargin, 0.5ky+csWallSW/2+csMargin]
+    mount_sw_cover_middle_right:
+      anchor:
+        ref: matrix_middle_num
+        shift: [4U+csWallSW/2-csMargin, -2U-3]
   mirror: &mirror
     ref: matrix_inner_num
     distance: 5kx
@@ -403,99 +433,24 @@ outlines:
   _mounts_sw_left:
     $params: [<mirror>, <side>]
     $args: ["", left]
-    mount_top_left:
-      what: circle
-      radius: csScrewSize
-      where:   
-        ref: [<mirror>matrix_outer_num]
-        shift: [-0.5kx-csWallSW/2-csMargin, 0.5ky+csWallSW/2+csMargin]
-    mount_top_middle:
+    mount_sw:
       what: circle
       radius: csScrewSize
       where:
-        ref: [<mirror>matrix_middle_num]
-        shift: [0.5kx, 0.5ky+csMargin+csWallSW/2+1]
-    mount_bottom_left:
-      what: circle
-      radius: csScrewSize
-      where:
-        ref: [<mirror>matrix_outer_bottom]
-        shift: [-0.5kx-csWallSW/2-csMargin, -0.5ky-csWallSW/2-csMargin]
-    mount_bottom_middle:
-      what: circle
-      radius: csScrewSize
-      where:
-        ref: [<mirror>thumbs_top_cluster]
-        shift: [-0.5kx, -0.5ky-csMargin-csWallSW/2-1]
-    mount_bottom_right:
-      what: circle
-      radius: csScrewSize
-      where:
-        ref: [<mirror>thumbs_bottom_cluster]
-        shift: [-0.55kx, 0.5ky+csMargin+csWallSW/2+1]
-    mount_top_right:
-      what: circle
-      radius: csScrewSize
-      where:
-        ref: [<mirror>matrix_middle_num]
-        shift: [4U+csWallSW/2-csMargin, 0.5ky+csWallSW/2+csMargin]
-    mount_middle_right:
-      what: circle
-      radius: csScrewSize
-      where:
-        ref: [<mirror>matrix_middle_num]
-        shift: [4U+csWallSW/2-csMargin, -2U-3]
+        - [/^<mirror>mount_sw_.*/]
 
   # Sandwich case - Middle
-  # TODO: Refactor mount points to Points
   _mounts_middle_sw_right:
     $extends: outlines._mounts_middle_sw_left
     $args: [mirror_, right]
   _mounts_middle_sw_left:
     $params: [<mirror>, <side>]
     $args: ["", left]
-    mount_top_left:
-      what: circle
-      radius: csSOSize
-      where:   
-        ref: [<mirror>matrix_outer_num]
-        shift: [-0.5kx-csWallSW/2-csMargin, 0.5ky+csWallSW/2+csMargin]
-    mount_top_middle:
+    mount_sw:
       what: circle
       radius: csSOSize
       where:
-        ref: [<mirror>matrix_middle_num]
-        shift: [0.5kx, 0.5ky+csMargin+csWallSW/2+1]
-    mount_bottom_left:
-      what: circle
-      radius: csSOSize
-      where:
-        ref: [<mirror>matrix_outer_bottom]
-        shift: [-0.5kx-csWallSW/2-csMargin, -0.5ky-csWallSW/2-csMargin]
-    mount_bottom_middle:
-      what: circle
-      radius: csSOSize
-      where:
-        ref: [<mirror>thumbs_top_cluster]
-        shift: [-0.5kx, -0.5ky-csMargin-csWallSW/2-1]
-    mount_bottom_right:
-      what: circle
-      radius: csSOSize
-      where:
-        ref: [<mirror>thumbs_bottom_cluster]
-        shift: [-0.55kx, 0.5ky+csMargin+csWallSW/2+1]
-    mount_top_right:
-      what: circle
-      radius: csSOSize
-      where:
-        ref: [<mirror>matrix_middle_num]
-        shift: [4U+csWallSW/2-csMargin, 0.5ky+csWallSW/2+csMargin]
-    mount_middle_right:
-      what: circle
-      radius: csSOSize
-      where:
-        ref: [<mirror>matrix_middle_num]
-        shift: [4U+csWallSW/2-csMargin, -2U-3]
+        - [/^<mirror>mount_sw_.*/]
 
   case_sw_outer_right:
     $extends: outlines.case_sw_outer_left
