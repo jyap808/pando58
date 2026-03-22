@@ -1,0 +1,30 @@
+site_name: Pando58
+repo_url: https://github.com/jyap808/pando58
+extra:
+  generator: false
+nav:
+  - Introduction: index.md
+  - BOM: bom.md
+  - Build: build.md
+  - Firmware: firmware.md
+  - Gallery: gallery.md
+
+theme:
+  name: material
+  static_templates:
+    - 404.html
+  features:
+    - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  logo: assets/images/pando_logo_256.png
+  favicon: assets/images/pando_logo_256.png
