@@ -1,9 +1,12 @@
-name: ci
+name: Build and Deploy MkDocs
 
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
