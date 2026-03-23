@@ -6,7 +6,7 @@
 
 This guide covers the **layered build type** using the dedicated PCBs, 2 reversible switch plates, and 2 reversible bottom plates.
 
-> **Note:** Case builds are similar (the one-piece case replaces the bottom plates) but are not covered here. Sandwich builds are also not covered.
+> **Note:** [3D printed case builds](gallery.md#3d-printed-case) are similar (the one-piece case replaces the bottom plates) but are not covered here. Sandwich builds are also not covered.
 
 > **Reference:** See the [Bill of Materials](bom.md) for a complete list of components and quantities needed.
 

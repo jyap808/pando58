@@ -1,6 +1,6 @@
 # Pando58 Case
 
-![Pando58 Case](case-photo.jpg)
+![Pando58 Case](../docs/assets/images/case-photo.jpg)
 
 3D printable case for Pando58 keyboard.
 
@@ -11,3 +11,5 @@ This replaces the default FR4 bottom piece. The assembled keyboard uses: switch 
 ## Printing
 
 The ready-to-print STL file is available on [Printables](https://www.printables.com/model/1647072-pando58-case).
+
+![Pando58 Case - Left Half](../docs/assets/images/case-photo-left-half.jpg)

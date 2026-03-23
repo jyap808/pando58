@@ -26,8 +26,14 @@ The same build from a different angle showing the left half.
 
 ### 3D Printed Case
 
-![Pando58 3D printed case](assets/images/case-photo.jpg)
-
 [3D printable case](https://www.printables.com/model/1647072-pando58-case) for Pando58 keyboard.
 
 This replaces the default FR4 bottom piece. The assembled keyboard uses: switch plate + PCB + bottom case (this piece).
+
+![Pando58 3D printed case](assets/images/case-photo.jpg)
+
+Keykobo Cherries with 40s set keycaps, printed with Ambrosia ASA filament in cardovan.
+
+![Pando58 3D printed case - left half](assets/images/case-photo-left-half.jpg)
+
+The same build from a different angle showing the left half.
