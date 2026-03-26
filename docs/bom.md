@@ -43,7 +43,7 @@ This BOM is for the basic FR4 PCB setup with 2x PCBs (one for each half), 2x swi
 
 #### Hardware
 
-- 10x 3M SJ5302 bumpons ([5 per half](https://www.digikey.com/en/products/detail/3m/SJ5302/2345107))
+- 8x 3M SJ5302 bumpons ([4 per half](https://www.digikey.com/en/products/detail/3m/SJ5302/2345107))
 
 ### Assembly Tools
 

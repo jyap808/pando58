@@ -12,7 +12,11 @@ This guide covers the **layered build type** using the dedicated PCBs, 2 reversi
 
 ![Left PCB MCU Detail](assets/images/left_pcb_mcu_detail.jpg)
 
-This guide walks through building **one side** of the PCBs since the assembly is identical on both sides. Note the "Left side" marking visible on the MCU section above.
+This guide walks through building **one half** (the left half) of the PCBs since the assembly is identical on both halves. Pictured above is the Left PCB top side.
+
+![Left PCB back side](assets/images/left_pcb_mcu_back.jpg)
+
+Left PCB back side, ready to be assembled.
 
 ## Assembly Steps
 
@@ -440,6 +444,6 @@ The image above shows the fully assembled keyboard with switches and bottom plat
 
 Insert the keycaps onto the switches. The above image shows the top view with keycaps inserted for the left hand side of the keyboard - this is the final step of assembly.
 
-> **Optional:** You can also place 5x 3M SJ5302 bumpons to the bottom side of the keyboard (5 on each side, 10 total).
+> **Optional:** You can also place 3M SJ5302 bumpons to the bottom side of the keyboard (4 on each side, 8 total).
 
 This completes the build! Next, you'll need to install firmware onto the MCU. See the [Firmware](firmware.md) page for instructions.

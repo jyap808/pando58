@@ -14,13 +14,7 @@ DSA Way keycaps in red accents by FK Keycaps. DSA is a uniform keycap height.
 
 GMK Godspeed Colombia keycaps with Cherry Icebergo PBT modifier kit keycaps (from keeb.io).
 
-### Custom Case Build
-
-![Keykobo Nichirin](assets/images/gallery_keykobo_nichirin.jpg)
-
-Keykobo Nichirin with 40s set keycaps. Custom stainless steel sheet metal mixed with 3D printed case.
-
-![Keykobo Nichirin Left Angle](assets/images/gallery_keykobo_nichirin_left_angle.jpg)
+![GMK Godspeed Columbia Left Half](assets/images/gallery_gmk_godspeed_columbia_left_half.jpg)
 
 The same build from a different angle showing the left half.
 
@@ -35,5 +29,25 @@ This replaces the default FR4 bottom piece. The assembled keyboard uses: switch 
 Keykobo Cherries with 40s set keycaps, printed with Ambrosia ASA filament in cardovan.
 
 ![Pando58 3D printed case - left half](assets/images/case-photo-left-half.jpg)
+
+The same build from a different angle showing the left half.
+
+### Custom Case Build
+
+This is my custom case build made from stainless steel sheet metal mixed with 3D printed case.
+
+![Keykobo Nichirin](assets/images/gallery_keykobo_nichirin.jpg)
+
+Keykobo Nichirin with 40s set keycaps.
+
+![Keykobo Nichirin Left Angle](assets/images/gallery_keykobo_nichirin_left_angle.jpg)
+
+The same build from a different angle showing the left half.
+
+![Keykobo Cherries](assets/images/gallery_keykobo_cherries.jpg)
+
+Keykobo Cherries with 40s set keycaps.
+
+![Keykobo Cherries Left Half](assets/images/gallery_keykobo_cherries_left_half.jpg)
 
 The same build from a different angle showing the left half.
