@@ -7,14 +7,14 @@ Pando58 is a modern RP2040 Zero based 58-key column staggered split keyboard. Th
 
 The [Documentation pages](https://jyap808.github.io/pando58) contain a Bill of Materials, Build guide, Firmware guide and Gallery.
 
-## Overview
+## ⌨️ Overview
 
 - **Layout:** Split ergonomic, 58 keys total  
 - **Split connection:** RJ45 (no TRRS)  
 - **MCU:** 2× RP2040 Zero  
 - **Firmware:** Vial  
 
-## Design Philosophy
+## 💡 Design Philosophy
 
 Pando58 was designed to avoid unnecessary complexity and common failure points found in many split keyboards.
 
@@ -31,7 +31,7 @@ Pando58 uses **RJ45** to solve this:
 - ✅ Readily available cables and plugs
 - ✅ Clear pin separation and predictable wiring
 
-## Electronics
+## 🟢 Electronics
 
 - **MCUs:** 2× RP2040 Zero  
 - **PCBs:** Dedicated left and right designs (not reversible)
@@ -45,7 +45,7 @@ Pando58 intentionally uses **separate left and right PCBs** to:
 - Reduce mistakes
 - Improve electrical clarity
 
-## Switch & Diode Support
+## ⚡ Switch & Diode Support
 
 Pando58 is designed to accommodate different builder preferences and budgets:
 
@@ -58,7 +58,7 @@ Pando58 is designed to accommodate different builder preferences and budgets:
 
 Choose the configuration that best fits your workflow and tooling.
 
-## Firmware
+## 💾 Firmware
 
 - **Vial firmware provided** (see `keyboards/` directory)
 - Instant key remapping
@@ -66,7 +66,7 @@ Choose the configuration that best fits your workflow and tooling.
 - Works out of the box once flashed
 - Compiled firmware available in [Releases](https://github.com/jyap808/pando58/releases)
 
-## Case Options
+## 📦 Case Options
 
 Pando58 is intentionally flexible in enclosure options:
 
@@ -83,14 +83,14 @@ Pando58 is intentionally flexible in enclosure options:
 - Source FreeCAD file in `case/` directory
 - Ready-to-print STL available on [Printables](https://www.printables.com/model/1647072-pando58-case)
 
-## Tooling & Design
+## 🛠️ Tooling & Design
 
 - Generated using **Ergogen**
 - Custom footprints created for:
   - RJ45 connector
   - RP2040 Zero (heavily modified from existing designs)
 
-## Photos
+## 📷 Photos
 
 Additional photos are available in the [Gallery](https://jyap808.github.io/pando58/gallery).
 
@@ -113,7 +113,7 @@ Custom stainless steel and 3D printed case - Keykobo Cherries with 40s set keyca
 Custom stainless stell and 3D printed case - left half. Keykobo Nichirin with 40s set keycaps
 
 
-## License
+## 📄 License
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
 
