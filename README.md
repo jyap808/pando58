@@ -5,7 +5,8 @@
 
 Pando58 is a modern RP2040 Zero based 58-key column staggered split keyboard. The PCB supports hotswap sockets OR soldered switches. The interconnect uses RJ45 ports as opposed to TRRS, which improves reliability and allows for hotplugging.
 
-The [Documentation pages](https://jyap808.github.io/pando58) contain a Bill of Materials, Build guide, Firmware guide and Gallery.
+> [!NOTE]
+> 📘 The **[Documentation pages](https://jyap808.github.io/pando58)** contain a Bill of Materials, Build guide, Firmware guide and Gallery.
 
 ## ⌨️ Overview
 
