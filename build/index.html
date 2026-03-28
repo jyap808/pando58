@@ -1,0 +1,1689 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../bom/">
+      
+      
+        <link rel="next" href="../firmware/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/pando_logo_256.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Build - Pando58</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#build-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Pando58" class="md-header__button md-logo" aria-label="Pando58" data-md-component="logo">
+      
+  <img src="../assets/images/pando_logo_256.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Pando58
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Build
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jyap808/pando58" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Pando58" class="md-nav__button md-logo" aria-label="Pando58" data-md-component="logo">
+      
+  <img src="../assets/images/pando_logo_256.png" alt="logo">
+
+    </a>
+    Pando58
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jyap808/pando58" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BOM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assembly-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assembly Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Assembly Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bending-diodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bending Diodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diode-orientation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diode Orientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#populating-the-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Populating the Board
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldering-diodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering Diodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trimming-excess-leads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trimming Excess Leads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completed-diode-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completed Diode Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hotswap-sockets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hotswap Sockets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hotswap Sockets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#placing-hotswap-sockets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Placing Hotswap Sockets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldering-hotswap-sockets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering Hotswap Sockets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completed-hotswap-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completed Hotswap Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldered-switches-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldered Switches (Alternative)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rj45-port-interconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RJ45 Port - Interconnect
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RJ45 Port - Interconnect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rj45-port-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RJ45 Port Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldering-the-rj45-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering the RJ45 Port
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completed-rj45-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completed RJ45 Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rp2040-zero-mcu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RP2040 Zero MCU
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RP2040 Zero MCU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-female-header-sockets-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Female Header Sockets (Recommended)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Female Header Sockets (Recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparing-the-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing the Headers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-female-header-sockets-to-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Female Header Sockets to PCB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-for-soldering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing for Soldering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldering-the-female-header-sockets-to-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering the Female Header Sockets to PCB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldering-the-mcu-to-the-male-header-pins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering the MCU to the Male Header Pins
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-soldering-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Soldering (Alternative)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Switches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-the-switch-plate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing the Switch Plate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-switches-on-the-plate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Switches on the Plate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attaching-switches-to-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attaching Switches to PCB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attaching-the-bottom-plate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attaching the Bottom Plate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycaps-and-optional-bumpons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keycaps and Optional Bumpons
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../firmware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Firmware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gallery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gallery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assembly-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assembly Steps
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Assembly Steps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diodes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diodes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bending-diodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bending Diodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diode-orientation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diode Orientation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#populating-the-board" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Populating the Board
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldering-diodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering Diodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trimming-excess-leads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trimming Excess Leads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completed-diode-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completed Diode Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hotswap-sockets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hotswap Sockets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hotswap Sockets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#placing-hotswap-sockets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Placing Hotswap Sockets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldering-hotswap-sockets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering Hotswap Sockets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completed-hotswap-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completed Hotswap Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldered-switches-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldered Switches (Alternative)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rj45-port-interconnect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RJ45 Port - Interconnect
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RJ45 Port - Interconnect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rj45-port-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RJ45 Port Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldering-the-rj45-port" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering the RJ45 Port
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completed-rj45-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Completed RJ45 Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rp2040-zero-mcu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RP2040 Zero MCU
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RP2040 Zero MCU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-female-header-sockets-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Female Header Sockets (Recommended)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Female Header Sockets (Recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparing-the-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing the Headers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-female-header-sockets-to-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Female Header Sockets to PCB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-for-soldering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing for Soldering
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldering-the-female-header-sockets-to-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering the Female Header Sockets to PCB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#soldering-the-mcu-to-the-male-header-pins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Soldering the MCU to the Male Header Pins
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-soldering-alternative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Soldering (Alternative)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Switches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Switches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hardware
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-the-switch-plate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparing the Switch Plate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installing-switches-on-the-plate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installing Switches on the Plate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attaching-switches-to-pcb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attaching Switches to PCB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attaching-the-bottom-plate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attaching the Bottom Plate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keycaps-and-optional-bumpons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keycaps and Optional Bumpons
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="build-guide">Build Guide</h1>
+<h2 id="overview">Overview</h2>
+<p><img alt="All PCB Components for Layered Build" src="../assets/images/layered_build_components.jpg" /></p>
+<p>This guide covers the <strong>layered build type</strong> using the dedicated PCBs, 2 reversible switch plates, and 2 reversible bottom plates.</p>
+<blockquote>
+<p><strong>Note:</strong> <a href="../gallery/#3d-printed-case">3D printed case builds</a> are similar (the one-piece case replaces the bottom plates) but are not covered here. Sandwich builds are also not covered.</p>
+<p><strong>Reference:</strong> See the <a href="../bom/">Bill of Materials</a> for a complete list of components and quantities needed.</p>
+</blockquote>
+<p><img alt="Left PCB MCU Detail" src="../assets/images/left_pcb_mcu_detail.jpg" /></p>
+<p>This guide walks through building <strong>one half</strong> (the left half) of the PCBs since the assembly is identical on both halves. Pictured above is the Left PCB top side.</p>
+<p><img alt="Left PCB back side" src="../assets/images/left_pcb_mcu_back.jpg" /></p>
+<p>Left PCB back side, ready to be assembled.</p>
+<h2 id="assembly-steps">Assembly Steps</h2>
+<p>This guide covers the following components in detail. Follow each section in order for best results:</p>
+<ol>
+<li><a href="#diodes">Diodes</a> - Through-hole diode installation</li>
+<li><a href="#hotswap-sockets">Hotswap Sockets</a> - MX-compatible switch sockets</li>
+<li><a href="#rj45-port-interconnect">RJ45 Port - Interconnect</a> - Interconnect ports</li>
+<li><a href="#rp2040-zero-mcu">RP2040 Zero MCU</a> - Microcontroller installation</li>
+<li><a href="#switches">Switches</a> - Switch and plate installation</li>
+<li><a href="#keycaps-and-optional-bumpons">Keycaps and Optional Bumpons</a> - Final assembly</li>
+</ol>
+<h3 id="diodes">Diodes</h3>
+<p>Pando58 supports <strong>SMT (surface mount)</strong>, <strong>THT (through-hole)</strong>, or a <strong>combination of both</strong> diodes. This guide covers through-hole diode installation.</p>
+<blockquote>
+<p><strong>Note:</strong> If you're using SMT diodes, you should already be comfortable with surface mount soldering or follow a dedicated SMT guide.</p>
+</blockquote>
+<p><strong>Required:</strong> 58x 1N4148 diodes (29 per half)</p>
+<h4 id="bending-diodes">Bending Diodes</h4>
+<p><img alt="Diode Bending Jig" src="../assets/images/diode_bending_jig.jpg" /></p>
+<p>Use a bending jig for consistent, clean bends. You can download the 3D model from <a href="https://www.printables.com/model/739930-bending-jig">Printables</a>.</p>
+<p><img alt="Diode Placement in Jig" src="../assets/images/diode_jig_placement.jpg" /></p>
+<p>Place the diodes in the jig as shown above.</p>
+<p><img alt="Bent Diodes" src="../assets/images/diode_bending_result.jpg" /></p>
+<p>The jig bends diodes to a <strong>7.5mm standoff distance</strong>. You can hand-bend diodes at 7.5mm, but the jig produces cleaner, more consistent results.</p>
+<h4 id="diode-orientation">Diode Orientation</h4>
+<p><img alt="Diode Placement Orientation" src="../assets/images/diode_placement_orientation.jpg" /></p>
+<p><strong>Critical:</strong> Diodes are polarity-sensitive components. The <strong>black stripe</strong> on the diode indicates the <strong>cathode (-)</strong> side and must align with the direction arrow shown on the PCB silkscreen.</p>
+<ul>
+<li>The diodes feed through the <strong>BOTTOM</strong> of the PCB</li>
+<li>The black stripe must face the direction of the arrow in the PCB diagram</li>
+<li>Getting this wrong will cause the keyboard to malfunction</li>
+</ul>
+<h4 id="populating-the-board">Populating the Board</h4>
+<p><img alt="Diodes One Column Populated" src="../assets/images/diodes_one_column_populated.jpg" /></p>
+<p>Insert the diodes into one PCB half. The board above shows one column populated as an example.</p>
+<blockquote>
+<p><strong>Tip:</strong> Solder one column at a time to keep the workspace organized and reduce the chance of diodes falling out before soldering.</p>
+</blockquote>
+<h4 id="soldering-diodes">Soldering Diodes</h4>
+<p><img alt="Diode Soldered Close-up" src="../assets/images/diode_soldered_closeup.jpg" /></p>
+<p>Solder the diodes through the <strong>TOP side</strong> of the PCB. Ensure the diodes lie <strong>flat against the board</strong> while soldering to prevent uneven joints.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Apply heat to the pad and leg simultaneously</li>
+<li>Feed solder to create a smooth, concave joint</li>
+<li>Avoid overheating (keep soldering time under 3 seconds per joint)</li>
+<li>Make sure diodes remain flat against the board</li>
+</ul>
+<h4 id="trimming-excess-leads">Trimming Excess Leads</h4>
+<p><img alt="Diode Trimmed Close-up" src="../assets/images/diode_trimmed_closeup.jpg" /></p>
+<p>Use <strong>flush cutters</strong> to trim the diode legs close to the solder joint after soldering. This prevents sharp edges and reduces the risk of short circuits.</p>
+<h4 id="completed-diode-installation">Completed Diode Installation</h4>
+<p><img alt="Diodes Soldered Top Side" src="../assets/images/diodes_soldered_top.jpg" /></p>
+<p><img alt="Diodes Soldered Bottom Side" src="../assets/images/diodes_soldered_bottom.jpg" /></p>
+<p>The top image shows all diodes soldered and trimmed from the top side. The bottom image shows the bottom side with all diodes in place with correct orientation.</p>
+<p><strong>Verify before moving on:</strong></p>
+<ul>
+<li>All 29 diodes are soldered</li>
+<li>Black stripes align with PCB arrows (check from bottom side)</li>
+<li>No cold joints or excess solder</li>
+<li>All legs are trimmed flush</li>
+</ul>
+<h3 id="hotswap-sockets">Hotswap Sockets</h3>
+<p>Pando58 supports <strong>hotswap sockets</strong> or <strong>soldered switches</strong>.</p>
+<ul>
+<li><strong>Hotswap sockets</strong> allow you to insert and remove switches without soldering</li>
+<li><strong>Soldered switches</strong> are installed directly to the PCB (no sockets needed)</li>
+</ul>
+<p>This section covers hotswap socket installation. If you're soldering switches directly, skip to the Soldered Switches section below.</p>
+<blockquote>
+<p><strong>Note:</strong> Only <strong>MX-compatible</strong> hotswap sockets are supported. This PCB does not support Kailh hotswap sockets.</p>
+</blockquote>
+<p><strong>Required:</strong> 58x MX-compatible hotswap sockets (29 per half)</p>
+<h4 id="placing-hotswap-sockets">Placing Hotswap Sockets</h4>
+<p><img alt="Hotswap Socket Placement" src="../assets/images/hotswap_socket_placement.jpg" /></p>
+<p>Place the hotswap sockets on the footprints on the <strong>back side</strong> of the PCB. The orientation is outlined in the footprint silkscreen - align each socket accordingly.</p>
+<h4 id="soldering-hotswap-sockets">Soldering Hotswap Sockets</h4>
+<p><img alt="Hotswap Socket Soldered Close-up" src="../assets/images/hotswap_socket_soldered_closeup.jpg" /></p>
+<p>Heat each pad and apply solder to secure the socket. Solder <strong>both sides</strong> of each hotswap socket to ensure a solid connection.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Heat the pad before applying solder</li>
+<li>Ensure both sides of the socket are soldered</li>
+<li>Avoid bridging adjacent pads</li>
+<li>Don't overheat (sockets can be sensitive to excessive heat)</li>
+</ul>
+<h4 id="completed-hotswap-installation">Completed Hotswap Installation</h4>
+<p><img alt="Hotswap Sockets Populated Back Side" src="../assets/images/hotswap_sockets_populated_back.jpg" /></p>
+<p>The image above shows a fully populated back side with all 29 hotswap sockets soldered.</p>
+<p><strong>Verify before moving on:</strong></p>
+<ul>
+<li>All 29 hotswap sockets are soldered</li>
+<li>Both sides of each socket have good solder joints</li>
+<li>No solder bridges between adjacent pads</li>
+<li>Sockets are flush with the PCB</li>
+</ul>
+<h3 id="soldered-switches-alternative">Soldered Switches (Alternative)</h3>
+<p>If you're not using hotswap sockets, you can solder switches directly to the PCB:</p>
+<ol>
+<li>Insert the switch from the <strong>top side</strong> of the PCB</li>
+<li>Ensure the 2 pins align with the correct pads</li>
+<li>Solder the pins from the bottom side</li>
+<li>Repeat for all 29 switches</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Switches soldered directly to the PCB cannot be removed without desoldering. Hotswap sockets provide flexibility for future switch changes.</p>
+</blockquote>
+<h3 id="rj45-port-interconnect">RJ45 Port - Interconnect</h3>
+<p>The RJ45 port connects the left and right halves of the keyboard together using a standard Ethernet cable.</p>
+<p><strong>Required:</strong> 2x RJ45 ports (1 per half)</p>
+<h4 id="rj45-port-installation">RJ45 Port Installation</h4>
+<p><img alt="RJ45 Port Top Side Installation" src="../assets/images/rj45_port_top_side.jpg" /></p>
+<p>Install the RJ45 port on the <strong>TOP side</strong> of the PCB. Observe the footprint orientation silkscreen to ensure correct placement.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Molex RJ45 ports will snap in place on the two placeholder legs</li>
+<li>Clone ports may have smaller legs and won't snap in place - use tape to secure during soldering</li>
+<li>Ensure the port sits flush against the PCB</li>
+</ul>
+<p><img alt="RJ45 Port Bottom Side Unsoldered" src="../assets/images/rj45_port_bottom_unsoldered.jpg" /></p>
+<p>The image above shows the back side with the RJ45 port in place but not yet soldered.</p>
+<h4 id="soldering-the-rj45-port">Soldering the RJ45 Port</h4>
+<p>Solder the RJ45 port from the <strong>bottom side</strong> of the PCB. Ensure all pins have good solder joints.</p>
+<p><img alt="RJ45 Port Soldered" src="../assets/images/rj45_port_soldered.jpg" /></p>
+<p>The image above shows the completed soldering of the RJ45 port from the bottom side.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Heat each pad before applying solder</li>
+<li>Ensure all pins have solid solder joints</li>
+<li>Avoid bridging adjacent pins</li>
+<li>Don't overheat (plastic housing can be heat-sensitive)</li>
+</ul>
+<h4 id="completed-rj45-installation">Completed RJ45 Installation</h4>
+<p><strong>Verify before moving on:</strong></p>
+<ul>
+<li>RJ45 port is flush against the PCB</li>
+<li>All pins are soldered with good joints</li>
+<li>No solder bridges between pins</li>
+<li>Port orientation matches footprint silkscreen</li>
+</ul>
+<h3 id="rp2040-zero-mcu">RP2040 Zero MCU</h3>
+<p>The RP2040 Zero microcontroller is the brain of the Pando58 keyboard. This guide covers installation using female header sockets (recommended) which allows the MCU to be removable. The same steps apply for direct soldering (alternative), where the male header pins are soldered directly to the PCB.</p>
+<p><strong>Required:</strong></p>
+<ul>
+<li>2x RP2040 Zero microcontrollers (1 per half)</li>
+<li>4x 9-pin male header pins (2 rows per half)</li>
+<li>4x 9-pin female header sockets (2 rows per half, optional but recommended for removable MCU)</li>
+</ul>
+<h4 id="installation-methods">Installation Methods</h4>
+<p><strong>Two options are available:</strong></p>
+<ol>
+<li><strong>Using female header sockets (Recommended)</strong> - Allows easy MCU removal if it needs replacement</li>
+<li><strong>Direct soldering</strong> - Male header pins soldered directly to PCB (permanent installation)</li>
+</ol>
+<blockquote>
+<p><strong>Warning:</strong> Direct soldering makes MCU removal extremely difficult. Desoldering an MCU risks damaging both the MCU and the PCB.</p>
+</blockquote>
+<h4 id="using-female-header-sockets-recommended">Using Female Header Sockets (Recommended)</h4>
+<h5 id="preparing-the-headers">Preparing the Headers</h5>
+<p><img alt="RP2040 Header Pins" src="../assets/images/rp2040_header_pins.jpg" /></p>
+<p>Pictured above are 2 rows of female header sockets (top) and 2 rows of male header pins.</p>
+<p>The RP2040 Zero uses <strong>SIP (Single In-line Package) headers</strong> with 2.54mm spacing. These typically come in longer strips (e.g., 40 pins in a row). You'll need to snap off <strong>9 pins per row, 2 rows</strong> (18 pins total per MCU).</p>
+<blockquote>
+<p><strong>Note:</strong> Pando58 PCB only uses the side pins of the RP2040 Zero (9+9 = 18 pins), not the bottom 5 pins. This saves on pin headers.</p>
+</blockquote>
+<h5 id="installing-female-header-sockets-to-pcb">Installing Female Header Sockets to PCB</h5>
+<p><img alt="RP2040 Female Pins Placement" src="../assets/images/rp2040_female_pins_placement.jpg" /></p>
+<p>Insert the female header sockets into the <strong>RP2040 Zero footprint</strong> on the <strong>TOP</strong> of the PCB. The silkscreen text says "MCU face up".</p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Ensure sockets are inserted in the correct holes (2 rows of 9 pins)</li>
+<li>Sockets should be flush against the PCB</li>
+<li>Verify female header sockets are inserted on the top side of the PCB</li>
+</ul>
+<h5 id="preparing-for-soldering">Preparing for Soldering</h5>
+<p><img alt="RP2040 Header Pins Connected" src="../assets/images/rp2040_header_pins_connected.jpg" /></p>
+<p>Pictured above are female header sockets connected to male header pins in the correct alignment.</p>
+<p>Connect the male header pins onto the female header sockets on the PCB.</p>
+<p><img alt="RP2040 MCU Placement" src="../assets/images/rp2040_mcu_placement.jpg" /></p>
+<p>Place the RP2040 Zero MCU onto the male header pins to verify fit before soldering. The MCU faces up with Boot and Reset buttons on top, and USB-C port facing outwards (away from the keyboard). All components should align properly.</p>
+<p><img alt="RP2040 Header Pins Alignment" src="../assets/images/rp2040_soldering_pins.jpg" /></p>
+<p>Use <strong>Kapton tape</strong> or other removable tape (like painter's tape) to secure the female header sockets to the PCB before soldering. Use any tape that doesn't permanently stick or damage the PCB. This prevents movement during soldering and ensures sockets stay flush.</p>
+<p>The image above shows a top-side view with the 2 rows of female header sockets aligned vertically.</p>
+<p><img alt="RP2040 Taped for Soldering" src="../assets/images/rp2040_taped_for_soldering.jpg" /></p>
+<p>The image above shows a side view with the female header sockets aligned vertically.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Female header sockets must be flush against the PCB</li>
+<li>MCU faces up with USB-C port facing outwards</li>
+<li>Female header sockets should be aligned vertically in 2 rows of 9 pins</li>
+<li>Tape prevents sockets from shifting during soldering</li>
+<li>Use removable tape that won't damage the PCB</li>
+</ul>
+<h5 id="soldering-the-female-header-sockets-to-pcb">Soldering the Female Header Sockets to PCB</h5>
+<p><img alt="RP2040 Pins Unsoldered" src="../assets/images/rp2040_pins_unsoldered.jpg" /></p>
+<p>The image above shows the back of the PCB with the female header sockets in place but not yet soldered.</p>
+<p>Solder the female header socket pins to the PCB from the <strong>back</strong> of the PCB. Start by soldering each <strong>corner pin</strong> to secure the sockets in place, then solder the rest of the pins.</p>
+<p><img alt="RP2040 Pins Soldered" src="../assets/images/rp2040_pins_soldered.jpg" /></p>
+<p>The image above shows the female header sockets fully soldered from the back of the PCB.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Solder from the back of the PCB</li>
+<li>Start with corner pins to secure the sockets in place</li>
+<li>Ensure all 18 pins have solid solder joints</li>
+<li>Avoid bridging adjacent pins</li>
+<li>Don't overheat (plastic housing can be heat-sensitive)</li>
+</ul>
+<h5 id="soldering-the-mcu-to-the-male-header-pins">Soldering the MCU to the Male Header Pins</h5>
+<p>After soldering the female header sockets to the PCB, the male header pins are still connected to them with the RP2040 Zero MCU placed on top.</p>
+<p><img alt="RP2040 Zero Completed" src="../assets/images/rp2040_completed.jpg" /></p>
+<p>The image above shows the completed RP2040 Zero installation.</p>
+<p><strong>Steps:</strong></p>
+<ol>
+<li>Ensure the MCU is properly seated on the male header pins</li>
+<li>Optionally use Kapton tape to secure the MCU in place if it tends to move</li>
+<li>Solder the male header pins to the MCU from the <strong>top side</strong></li>
+<li>Start with corner pins to secure the MCU, then solder the remaining pins</li>
+<li>Remove tape if used</li>
+</ol>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>MCU faces up with USB-C port facing outwards</li>
+<li>Apply minimal heat to avoid damaging the MCU</li>
+<li>Solder all 18 pins (2 rows of 9 pins)</li>
+<li>Start with corner pins to secure alignment</li>
+</ul>
+<p><strong>Verify before moving on:</strong></p>
+<ul>
+<li>All female header socket pins are soldered to PCB with good joints</li>
+<li>No solder bridges between pins</li>
+<li>All male header pins are soldered to MCU</li>
+<li>RP2040 Zero MCU is properly seated in the female header sockets</li>
+<li>MCU faces up with USB-C port facing outwards</li>
+</ul>
+<h4 id="direct-soldering-alternative">Direct Soldering (Alternative)</h4>
+<p>The RP2040 Zero typically comes with corresponding male header pins. Solder these male pins directly to the PCB.</p>
+<p><strong>Step 1: Preparing the Headers</strong></p>
+<p>Snap 4x 9-pin male header pins (2 rows per MCU) if needed. These typically come in longer strips (e.g., 40 pins in a row).</p>
+<p><strong>Step 2: Installing Male Header Pins to PCB</strong></p>
+<ol>
+<li>Insert the male header pins into the RP2040 Zero footprint on the <strong>TOP</strong> of the PCB</li>
+<li>Use Kapton tape or removable tape to secure the pins in place</li>
+<li>Solder all 18 pins to the PCB from the <strong>back</strong>, starting with corner pins</li>
+<li>Remove tape after soldering is complete</li>
+</ol>
+<p><strong>Step 3: Soldering MCU to Header Pins</strong></p>
+<ol>
+<li>Place the RP2040 Zero MCU onto the male header pins</li>
+<li>Ensure MCU faces up with USB-C port facing outwards</li>
+<li>Solder the 18 pins on the MCU side, starting with the corner pins</li>
+<li>Apply minimal heat to avoid damaging the MCU</li>
+</ol>
+<blockquote>
+<p><strong>Warning:</strong> This method makes MCU removal extremely difficult. Desoldering an MCU risks damaging both the MCU and the PCB.</p>
+</blockquote>
+<p><strong>Verify before moving on:</strong></p>
+<ul>
+<li>All male header pins are soldered to PCB with good joints</li>
+<li>No solder bridges between pins</li>
+<li>All male header pins are soldered to MCU</li>
+<li>MCU faces up with USB-C port facing outwards</li>
+</ul>
+<h3 id="switches">Switches</h3>
+<p>The switches are installed between the switch plate and the PCB. This section covers switch installation and final assembly.</p>
+<h4 id="hardware">Hardware</h4>
+<p><img alt="M2 Hardware" src="../assets/images/m2_hardware.jpg" /></p>
+<p>The above image shows 5x M2 8mm brass standoffs and 10x M2 4mm screws, which is the correct quantity for one half of the keyboard.</p>
+<p><strong>Required:</strong></p>
+<ul>
+<li>10x M2 8mm brass standoffs (5 per half)</li>
+<li>20x M2 4mm screws (10 per half)</li>
+<li>58x switches (29 per half)</li>
+<li>2x Switch plates</li>
+<li>2x Bottom plates</li>
+</ul>
+<h4 id="preparing-the-switch-plate">Preparing the Switch Plate</h4>
+<p><img alt="Switch Plate" src="../assets/images/switch_plate.jpg" /></p>
+<p>The switch plate is reversible and works for both left and right halves.</p>
+<p><img alt="Switch Plate Top with Standoffs" src="../assets/images/switch_plate_top_standoffs.jpg" /></p>
+<p>Screw the standoffs from the top side of the plate.</p>
+<p><img alt="Switch Plate Bottom with Standoffs" src="../assets/images/switch_plate_bottom_standoffs.jpg" /></p>
+<h4 id="installing-switches-on-the-plate">Installing Switches on the Plate</h4>
+<p><img alt="Switches on Plate - Top" src="../assets/images/switches_on_plate_top.jpg" /></p>
+<p>Insert switches into the plate. Place switches on the edges and near the standoffs for structural support. The switch pins must face <strong>up</strong> (towards the top of the plate) to align with the hotswap sockets.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Switch pins face up to align with hotswap sockets</li>
+<li>Place switches near edges and standoffs for structural support</li>
+</ul>
+<p><img alt="Switches on Plate - Bottom" src="../assets/images/switches_on_plate_bottom.jpg" /></p>
+<h4 id="attaching-switches-to-pcb">Attaching Switches to PCB</h4>
+<p><img alt="Switches Inserted into PCB" src="../assets/images/switches_inserted_pcb.jpg" /></p>
+<p>Place the switch plate onto the PCB. Fully press the switches into the hotswap sockets.</p>
+<p><img alt="Switch PCB Side View" src="../assets/images/switch_pcb_side_view.jpg" /></p>
+<p>The image above shows a switch sitting flush against the PCB.</p>
+<p><strong>Key points:</strong></p>
+<ul>
+<li>Fully press switches into hotswap sockets</li>
+<li>Ensure switches sit flush against PCB</li>
+</ul>
+<p><img alt="All Switches Inserted" src="../assets/images/all_switches_inserted.jpg" /></p>
+<p>The above image shows all 29 switches inserted into the plate for one half of the keyboard.</p>
+<h4 id="attaching-the-bottom-plate">Attaching the Bottom Plate</h4>
+<p><img alt="Bottom Plate" src="../assets/images/bottom_plate.jpg" /></p>
+<p>The bottom plate provides structural support and protection.</p>
+<p><img alt="Bottom Plate Attached" src="../assets/images/bottom_plate_attached.jpg" /></p>
+<p>Screw the bottom plate to the standoffs.</p>
+<p><img alt="Assembly Side View" src="../assets/images/assembly_side_view.jpg" /></p>
+<p><img alt="Assembly Complete" src="../assets/images/assembly_complete_top.jpg" /></p>
+<p>The image above shows the fully assembled keyboard with switches and bottom plate attached.</p>
+<h3 id="keycaps-and-optional-bumpons">Keycaps and Optional Bumpons</h3>
+<p><img alt="Keycaps Inserted Left" src="../assets/images/keycaps_inserted_left.jpg" /></p>
+<p>Insert the keycaps onto the switches. The above image shows the top view with keycaps inserted for the left hand side of the keyboard - this is the final step of assembly.</p>
+<blockquote>
+<p><strong>Optional:</strong> You can also place 3M SJ5302 bumpons to the bottom side of the keyboard (4 on each side, 8 total).</p>
+</blockquote>
+<p>This completes the build! Next, you'll need to install firmware onto the MCU. See the <a href="../firmware/">Firmware</a> page for instructions.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
