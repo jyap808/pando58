@@ -3,7 +3,7 @@
 > ![Pando58 with GMK Godspeed Colombia](docs/assets/images/gallery_gmk_godspeed_columbia.jpg)
 > <sub>Pando58 + GMK Godspeed Colombia keycaps with Cherry Icebergo PBT modifier kit</sub>
 
-Pando58 is a modern RP2040 Zero based 58-key column staggered split keyboard. The PCB supports hotswap sockets OR soldered switches. The interconnect uses RJ45 ports as opposed to TRRS, which improves reliability and allows for hotplugging.
+Pando58 is a modern RP2040 Zero-based 58-key column staggered split keyboard. The PCB supports hotswap sockets OR soldered switches. The interconnect uses RJ45 ports as opposed to TRRS, which improves reliability and allows for hotplugging.
 
 > [!NOTE]
 > 📘 The **[Documentation pages](https://jyap808.github.io/pando58)** contain a Bill of Materials, Build guide, Firmware guide and Gallery.
@@ -34,6 +34,8 @@ Pando58 uses **RJ45** to solve this:
 - ✅ Mechanically robust
 - ✅ Readily available cables and plugs
 - ✅ Clear pin separation and predictable wiring
+
+For more details on the design and development process, see my [blog post](https://julianyap.com/posts/2026-03-26/).
 
 ## 🟢 Electronics
 
