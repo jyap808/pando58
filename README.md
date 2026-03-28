@@ -8,6 +8,9 @@ Pando58 is a modern RP2040 Zero based 58-key column staggered split keyboard. Th
 > [!NOTE]
 > 📘 The **[Documentation pages](https://jyap808.github.io/pando58)** contain a Bill of Materials, Build guide, Firmware guide and Gallery.
 
+> [!TIP]
+> 🚀 Want to build one? Official PCB sets and full DIY kits are available on [Etsy](https://www.etsy.com/listing/4478359437/). Your support helps me keep this project open-source and encourages the development of new models!
+
 ## ⌨️ Overview
 
 - **Layout:** Split ergonomic, 58 keys total  
