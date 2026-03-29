@@ -44,6 +44,10 @@ Keykobo Nichirin with 40s set keycaps.
 
 The same build from a different angle showing the left half.
 
+![Keykobo Nichirin Left Half](assets/images/gallery_keykobo_nichirin_left_half.jpg)
+
+The same build from a top view showing the left half.
+
 ![Keykobo Cherries](assets/images/gallery_keykobo_cherries.jpg)
 
 Keykobo Cherries with 40s set keycaps.
