@@ -55,3 +55,11 @@ Keykobo Cherries with 40s set keycaps.
 ![Keykobo Cherries Left Half](assets/images/gallery_keykobo_cherries_left_half.jpg)
 
 The same build from a different angle showing the left half.
+
+![GMK Awaken](assets/images/gallery_gmk_awaken.jpg)
+
+GMK Awaken keycaps.
+
+![GMK Awaken Left Half](assets/images/gallery_gmk_awaken_left_half.jpg)
+
+The same build from a different angle showing the left half.

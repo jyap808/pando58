@@ -1,7 +1,6 @@
 # Pando58
 
-> ![Pando58 with GMK Godspeed Colombia](docs/assets/images/gallery_gmk_godspeed_columbia.jpg)
-> <sub>Pando58 + GMK Godspeed Colombia keycaps with Cherry Icebergo PBT modifier kit</sub>
+![Pando58 with GMK Godspeed Colombia](docs/assets/images/gallery_gmk_godspeed_columbia.jpg)
 
 Pando58 is a modern RP2040 Zero-based 58-key column staggered split keyboard. The PCB supports hotswap sockets OR soldered switches. The interconnect uses RJ45 ports as opposed to TRRS, which improves reliability and allows for hotplugging.
 
@@ -112,11 +111,11 @@ Standard layout build with DSA Way keycaps
 ![Pando58 3D printed case - left half](docs/assets/images/case-photo-left-half.jpg)
 3D printed case - left half
 
-![Keykobo Cherries](docs/assets/images/gallery_keykobo_cherries.jpg)
-Custom stainless steel and 3D printed case - Keykobo Cherries with 40s set keycaps
+![GMK Awaken](docs/assets/images/gallery_gmk_awaken.jpg)
+Custom stainless steel and 3D printed case - GMK Awaken keycaps.
 
-![Keykobo Cherries Left Half](docs/assets/images/gallery_keykobo_nichirin_left_angle.jpg)
-Custom stainless stell and 3D printed case - left half. Keykobo Nichirin with 40s set keycaps
+![GMK Awaken Left Half](docs/assets/images/gallery_gmk_awaken_left_half.jpg)
+The same build from a different angle showing the left half.
 
 
 ## 📄 License
