@@ -150,12 +150,15 @@ The image above shows a fully populated back side with all 29 hotswap sockets so
 
 ### Soldered Switches (Alternative)
 
+> **Important:** Attach the switches to the switch plate BEFORE soldering them to the PCB.
+
 If you're not using hotswap sockets, you can solder switches directly to the PCB:
 
-1. Insert the switch from the **top side** of the PCB
-2. Ensure the 2 pins align with the correct pads
-3. Solder the pins from the bottom side
-4. Repeat for all 29 switches
+1. First, attach switches to the switch plate (see Switch Plate section)
+2. Insert the switch + plate assembly from the **top side** of the PCB
+3. Ensure the 2 pins align with the correct pads
+4. Solder the pins from the bottom side
+5. Repeat for all 29 switches
 
 > **Note:** Switches soldered directly to the PCB cannot be removed without desoldering. Hotswap sockets provide flexibility for future switch changes.
 
