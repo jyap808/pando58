@@ -7,7 +7,7 @@
     "usb": {
         "vid": "0x4A59",
         "pid": "0x3538",
-        "device_version": "1.0.1"
+        "device_version": "1.2.0"
     },
     "features": {
         "bootmagic": true,
@@ -25,6 +25,9 @@
         "serial": {
             "driver": "vendor",
             "pin": "GP0"
+        },
+        "transport": {
+            "watchdog": true
         }
     },
     "layouts": {
