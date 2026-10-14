@@ -120,6 +120,6 @@ The same build from a different angle showing the left half.
 
 ## 📄 License
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+[Pando58 Keyboard](https://github.com/jyap808/pando58) © 2026 by [Julian Yap](https://julianyap.com/) is Open Hardware, licensed under [CERN-OHL-S v2](https://ohwr.org/cern_ohl_s_v2.txt). See [LICENSE](LICENSE).
 
-[Pando58 Keyboard](https://github.com/jyap808/pando58) © 2026 by [Julian Yap](https://julianyap.com/) is licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1)
+The firmware in `keyboards/` is licensed under the [GPL v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
